@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import { TextField } from '@material-ui/core';
+import { Card, Grid, TextField, Typography } from '@material-ui/core';
 import { useState } from 'react';
 // import { useSnackbar } from 'notistack';
 
@@ -43,27 +43,39 @@ function Home() {
 
   return (
     <div className="App">
-      <TextField className='textfields'
-        value={nomeTemp}
-        label="Nome"
-        fullWidth
-        onChange={(e) => setNomeTemp(e.target.value)}
-        variant="outlined" />
 
-      <br />
+      <Typography variant='h4'>Adicionar uma nova tarefa</Typography>
 
-      <TextField className='textfields'
-        value={tarefaTemp}
-        label="Tarefa"
-        fullWidth
-        multiline
-        onChange={(e) => setTarefaTemp(e.target.value)}
-        variant="outlined" />
-      <br />
+      <form onSubmit={() => handleClick(nomeTemp, tarefaTemp, id)}>
 
-      <Button variant="contained" color="primary" onClick={() => handleClick(nomeTemp, tarefaTemp, id)}>
-        Salvar
-      </Button>
+        <Card variant="outlined" sx={{ padding: 2 }}>
+          <Grid container>
+            <TextField className='textfields' sx={{ marginBottom: 2 }}
+              value={nomeTemp}
+              label="Nome"
+              fullWidth
+              required
+              onChange={(e) => setNomeTemp(e.target.value)}
+              variant="outlined" />
+
+            <br />
+
+            <TextField className='textfields' sx={{ marginBottom: 2 }}
+              value={tarefaTemp}
+              label="Tarefa"
+              fullWidth
+              required
+              multiline rows={3}
+              onChange={(e) => setTarefaTemp(e.target.value)}
+              variant="outlined" />
+            <br />
+
+            <Button variant="contained" fullWidth type='submit' color="primary">
+              Salvar
+            </Button>
+          </Grid>
+        </Card>
+      </form>
       <br />
 
 
